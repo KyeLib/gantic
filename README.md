@@ -1,4 +1,4 @@
-# Gameplay-Behavior-Monitor
+# GameplayBehaviorMonitor
 A C++ project for analyzing in-game telemetry and detecting player behavior.
 
 ## Overview
@@ -8,3 +8,6 @@ movement patterns, and score changes.
 This project focuses on the detection logic itself using simulated or recorded data.
 
 ## Goals
+- Design a C++ system for gameplay data analysis
+- Implement detection techniques
+- Log and report violations for later review
