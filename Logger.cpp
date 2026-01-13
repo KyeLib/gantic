@@ -1,12 +1,19 @@
 #include "Logger.h"
 
+
 #include <string>
 #include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <sstream>
 
 
 
-//Gets current time and date
-std::string getCurTime()
+static std::ofstream logFile{ logs.txt", std::ios::app };
+
+
+//Gets current date and time
+static std::string getCurTime()
 {
 
     auto getTime{ std::chrono::system_clock::now() };
@@ -21,4 +28,40 @@ std::string getCurTime()
 
     return oss.str();
 
+}
+
+//Prints: "[timestamp] [log level] message"
+void Logger::write(LogLevels level, const std::string& message)
+{
+    if (logFile.is_open())
+        return;
+
+    logFile
+        << "[" << getCurTime() << "] "
+        << "[" << logLevelToText(level) << "] "
+        << message << "\n";
+
+    logFile.flush();
+}
+
+
+//api
+void Logger::info(const std::string& message)
+{
+    write(LogLevels::info, message);
+}
+
+void Logger::warn(const std::string& message)
+{
+    write(LogLevels::warn, message);
+}
+
+void Logger::error(const std::string& message)
+{
+    write(LogLevels::error, message);
+}
+
+void Logger::detected(const std::string& message)
+{
+    write(LogLevels::detected, message);
 }
