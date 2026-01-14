@@ -30,6 +30,19 @@ void Logger::init(const std::string& filepath)
     }
 }
 
+void Logger::end()
+{
+
+    if (!logFile.is_open())
+
+        return;
+   
+        logFile << "----- Logger Ended -----\n";
+        logFile.flush();
+        logFile.close();
+
+}
+
 //Gets current date and time
 static std::string getCurTime()
 {

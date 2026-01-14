@@ -16,6 +16,8 @@ public:
 
 	static void init(const std::string& filepath = "logs.txt");
 
+	static void end();
+
 	static void info(const std::string& message);
 	static void warn(const std::string& message);
 	static void error(const std::string& message);
