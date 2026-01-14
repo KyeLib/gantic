@@ -6,11 +6,29 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <iostream>
 
 
+std::ofstream Logger::logFile{};
+std::string Logger::filePath{ "logs.txt" };
 
-static std::ofstream logFile{ "logs.txt", std::ios::app };
 
+void Logger::init(const std::string& filepath)
+{
+    filePath = filepath;
+
+    logFile.open(filePath, std::ios::app);
+
+    if (!logFile.is_open())
+    {
+        std::cerr << "Logger failed to open log file: " << filePath << "\n";
+    }
+    else
+    {
+        logFile << "----- Logger initialized -----\n";
+        logFile.flush();
+    }
+}
 
 //Gets current date and time
 static std::string getCurTime()
@@ -42,6 +60,18 @@ void Logger::write(LogLevels level, const std::string& message)
         << message << "\n";
 
     logFile.flush();
+}
+
+std::string Logger::logLevelToText(LogLevels level)
+{
+    switch (level)
+    {
+    case LogLevels::info:     return "INFO";
+    case LogLevels::warn:     return "WARN";
+    case LogLevels::error:    return "ERROR";
+    case LogLevels::detected: return "DETECTED";
+    default:                 return "UNKNOWN";
+    }
 }
 
 
