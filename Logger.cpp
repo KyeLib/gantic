@@ -51,7 +51,7 @@ static std::string getCurTime()
 //Prints: "[timestamp] [log level] message"
 void Logger::write(LogLevels level, const std::string& message)
 {
-    if (logFile.is_open())
+    if (!logFile.is_open())
         return;
 
     logFile
