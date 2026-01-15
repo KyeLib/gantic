@@ -19,7 +19,8 @@ void listProcesses() {
 
             std::wstring file{ ab.szExeFile };
             std::string processName{ file.begin(), file.end() };
-            Logger::info("Process detected: " + processName);
+            DWORD pid{ ab.th32ProcessID };
+            Logger::info("Process detected: " + processName + " (PID: " + std::to_string(pid) + ")");
 
         } while (Process32NextW(snapshot, &ab));
 
