@@ -14,5 +14,11 @@ int main()
 
     Logger::end();
 
+    Logger::init("logs.txt");
+
+    blackListedProcesses();
+
+    Logger::end();
+
     return 0;
 }
