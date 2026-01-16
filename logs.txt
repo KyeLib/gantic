@@ -1,5 +1,0 @@
------ Logger initialized -----
-[01/13/26 17:33:41] [INFO] Anti-cheat starting
-[01/13/26 17:33:41] [WARN] Unsigned module detected
-[01/13/26 17:33:41] [DETECTED] Memory write in protected region
------ Logger Ended -----
